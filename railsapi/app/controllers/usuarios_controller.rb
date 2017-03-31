@@ -5,9 +5,9 @@ class UsuariosController < ApplicationController
   # Mostrar usuarios
   def index
     @usuarios = Usuario.all
-    #render json: {usuarios:, @usuarios, usuarios.size}
+    render json: {usuarios: @usuarios, total: @usuarios.size}
     
-    json_response(@usuarios)
+    #json_response(@usuarios)
     #render json: usuarios
   end
 
@@ -20,12 +20,12 @@ class UsuariosController < ApplicationController
   # Crear usuario
   def create
 
-  if (params.has_key?(:id))
-    render json: { error: "No se puede crear usuario con id" }, status: :bad_request
-  else
-    @usuario = Usuario.create!(user_params)
-    json_response(@usuario, :created)
-  end
+    if (params.has_key?(:id))
+      render json: { error: "No se puede crear usuario con id" }, status: :bad_request
+    else
+      @usuario = Usuario.create!(user_params)
+      json_response(@usuario, :created)
+    end
    
 
    #usuario=Usuario.new(user_params) 
@@ -39,18 +39,30 @@ class UsuariosController < ApplicationController
 
   # Update usuario
   def update
-    #@usuario.update(user_params)
-    if (params.has_key?(:id))
-      render json: { error: "id no es modificable" }, status: :bad_request
-    else
-      usuario = Usuario.find(params[:id])
-
-      if usuario.update(user_params)
-        render json: usuario, status: :ok
-      else
-        render json: { error: "La modificación ha fallado" }, status: :internal_server_error
-      end
+    #if (params.has_key?(:id))
+    #  render json: { error: "id no es modificable" }, status: :bad_request
+    #end
+    
+    usuario = Usuario.find(params[:id])
+    if usuario.update(user_params)
+      render json: @usuario, status: :ok
     end
+
+    
+
+    #@usuario.update(user_params)
+    #if (params.has_key?(:id))
+    #  render json: { error: "id no es modificable" }, status: :bad_request
+    #else
+    #  usuario = Usuario.find(params[:id])
+    #
+     # if usuario.update(user_params)
+     #   render json: @usuario, status: :ok
+     # else
+     #   render json: { error: "La modificación ha fallado" }, status: :internal_server_error
+    #  end
+    #end
+
   end
 
   # Eliminar usuario
