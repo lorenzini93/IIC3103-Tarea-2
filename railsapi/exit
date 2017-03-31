@@ -1,0 +1,13 @@
+                                     Table "public.usuarios"
+   Column   |            Type             |                       Modifiers                       
+------------+-----------------------------+-------------------------------------------------------
+ id         | integer                     | not null default nextval('usuarios_id_seq'::regclass)
+ usuario    | character varying           | 
+ nombre     | character varying           | 
+ apellido   | character varying           | 
+ twitter    | character varying           | 
+ created_at | timestamp without time zone | not null
+ updated_at | timestamp without time zone | not null
+Indexes:
+    "usuarios_pkey" PRIMARY KEY, btree (id)
+
