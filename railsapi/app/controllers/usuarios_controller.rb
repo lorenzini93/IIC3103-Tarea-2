@@ -1,4 +1,4 @@
-class Api::UsuariosController < ApplicationController
+class UsuariosController < ApplicationController
   respond_to :json
 
   # Mostrar usuarios

@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
-  namespace :api, defaults:{ format: :json } do
-    resources :usuarios, :only => [:show, :create, :update, :destroy, :index]#, defaults:{ format: :json }
-    get 'usuario/:id', to: 'usuarios#show'
-  end 
+  #resources :usuarios, :only => [:show, :create, :update, :destroy, :index], defaults:{ format: :json }
+  get 'usuario', to: 'usuarios#index', defaults:{ format: :json } 
+  put 'usuario', to: 'usuarios#create', defaults:{ format: :json }
+  get 'usuario/:id', to: 'usuarios#show', defaults:{ format: :json }
+  post 'usuario/:id', to: 'usuarios#update', defaults:{ format: :json }
+  delete 'usuario/:id', to: 'usuarios#destroy', defaults:{ format: :json }
+  
+  #namespace :api, defaults:{ format: :json } do
+    #resources :usuarios, :only => [:show, :create, :update, :destroy, :index]#, defaults:{ format: :json }
+    #get 'usuario/:id', to: 'usuarios#show'
+  #end 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
